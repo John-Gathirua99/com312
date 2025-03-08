@@ -1,0 +1,186 @@
+{% extends 'base/base.html' %}
+{%load static%}
+{% block content %}
+    <div class="about-container">
+        <h2 class="about-heading">About Reconnect</h2>
+
+        <div class="about-content">
+            <div class="about-text">
+                <h3 class="sub-heading">Our Mission</h3>
+                <p>Reconnect is more than just a platform; it’s a way to rediscover the most important relationships from your past. We understand the power of childhood memories and how they shape who we become. Our mission is to help you rediscover old friendships, build new connections, and create memories that last a lifetime. Whether it’s reconnecting with someone from your school days or sharing stories with a long-lost friend, we’re here to make that happen.</p>
+
+                <h3 class="sub-heading">What We Offer</h3>
+                <p>With Reconnect, you can:</p>
+                <ul>
+                    <li>Find and connect with childhood friends</li>
+                    <li>Share memories, photos, and experiences</li>
+                    <li>Discover people who share similar interests</li>
+                    <li>Engage in meaningful conversations and reconnect in new ways</li>
+                </ul>
+                <p>We believe that everyone should have the chance to relive their childhood memories and build lasting friendships. That's why we’ve designed a platform that makes it easy to reconnect, reminisce, and create new memories, no matter where life has taken you.</p>
+            </div>
+
+            <div class="about-image">
+                <img src="https://media.istockphoto.com/id/1289142883/photo/two-senior-men-discussing-on-park-bench.webp?a=1&b=1&s=612x612&w=0&k=20&c=UvSZrZxZk4qmkjH_r_DkZ3trL_BpLxxgmFlEBRJEnWs=" alt="Reconnect Platform" class="about-img">
+            </div>
+        </div>
+
+        <div class="call-to-action">
+            <h3 class="cta-heading">Join Us and Rediscover Your Childhood Connections!</h3>
+            <p>If you're ready to reconnect with old friends or meet new people who share your interests, sign up today and start exploring your past.</p>
+            <a href="{% url 'register' %}" class="cta-btn">Sign Up Now</a>
+        </div>
+
+        <div class="team-section">
+            <h3 class="sub-heading">Meet the Team</h3>
+            <div class="team-members">
+                <div class="team-member">
+                    <img src="{% static 'images/team/member1.jpg' %}" alt="Team Member" class="team-img">
+                    <p class="team-name">Jane Doe</p>
+                    <p class="team-role">Founder & CEO</p>
+                    <p class="team-bio">Jane is passionate about technology and nostalgia. She founded Reconnect with the mission to bring people closer together by rekindling old friendships.</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1732525830182-b0e1a93f3679?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fHw%3D" alt="Team Member" class="team-img">
+                    <p class="team-name">John Smith</p>
+                    <p class="team-role">CTO</p>
+                    <p class="team-bio">John is a tech enthusiast who believes in the power of connection. He works tirelessly to ensure that Reconnect provides a seamless experience for everyone.</p>
+                </div>
+                <div class="team-member">
+                    <img src="{% static 'images/team/member3.jpg' %}" alt="Team Member" class="team-img">
+                    <p class="team-name">Sarah Lee</p>
+                    <p class="team-role">Community Manager</p>
+                    <p class="team-bio">Sarah’s role is to make sure that Reconnect’s community is thriving and engaging. She loves connecting people and creating a positive environment on the platform.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .about-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.about-heading {
+    text-align: center;
+    color: #e91e63;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.sub-heading {
+    font-size: 28px;
+    color: #333;
+    margin-top: 20px;
+}
+
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.about-text {
+    width: 60%;
+    font-size: 18px;
+    color: #555;
+}
+
+.about-text ul {
+    margin-left: 20px;
+    list-style-type: disc;
+}
+
+.about-image {
+    width: 35%;
+}
+
+.about-img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.call-to-action {
+    background-color: #e91e63;
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.cta-btn {
+    background-color: #fff;
+    color: #e91e63;
+    padding: 12px 30px;
+    font-size: 18px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.cta-btn:hover {
+    background-color: #f1f1f1;
+    color: #d5004f;
+    transition: background-color 0.3s ease;
+}
+
+.team-section {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.team-members {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.team-member {
+    width: 30%;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.team-img {
+    width: 100%;
+    border-radius: 50%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.team-name {
+    font-size: 22px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.team-role {
+    font-size: 18px;
+    color: #e91e63;
+    margin-top: 5px;
+}
+
+.team-bio {
+    font-size: 16px;
+    color: #555;
+    margin-top: 10px;
+}
+
+    </style>
+{% endblock %}

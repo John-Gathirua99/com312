@@ -1,0 +1,33 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>Notifications</h2>
+        <ul class="list-group">
+            {% for notification in notifications %}
+                <li class="list-group-item {% if notification.is_read %}list-group-item-secondary{% endif %}">
+                    <p>{{ notification.message }}</p>
+                    <small>{{ notification.created_at }}</small>
+                </li>
+            {% empty %}
+                <p>You have no notifications.</p>
+            {% endfor %}
+        </ul>
+    </div>
+    <script>
+        function markAsRead(notificationId) {
+            fetch(`/mark-notification-as-read/${notificationId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'Content-Type': 'application/json'
+                },
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById(`notification-${notificationId}`).classList.add('list-group-item-secondary');
+                }
+            });
+        }
+    </script>
+    
+{% endblock %}

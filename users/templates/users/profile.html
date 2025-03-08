@@ -1,0 +1,166 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="col-md-8">
+        <!-- Flash Messages -->
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} mt-3">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <!-- Profile Section -->
+        <div class="content-section">
+            <div class="media profile-media">
+                <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" alt="Profile Image" />
+                <div class="media-body ml-4">
+                    <h2 class="account-heading">{{ user.username }}</h2>
+                    <p class="text-secondary">{{ user.email }}</p>
+                </div>
+            </div>
+
+            <!-- Update Profile Form -->
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="form-title">Update Your Profile</legend>
+                    {{ update_form|crispy }}
+                    {{ profile_form|crispy }}
+                </fieldset>
+                <button type="submit" class="btn btn-update">Update Profile</button>
+            </form>
+        </div>
+    </div>
+    <style>
+      /* General Styling */
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+/* Profile Section */
+.content-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.profile-media {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.account-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid #007BFF;
+}
+
+.account-heading {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.text-secondary {
+    font-size: 16px;
+    color: #6c757d;
+}
+
+.media-body {
+    margin-left: 20px;
+}
+
+/* Flash Messages */
+.alert {
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+}
+
+/* Form Styles */
+form {
+    margin-top: 20px;
+}
+
+.form-title {
+    font-size: 24px;
+    color: #007BFF;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 10px;
+}
+
+button[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Crispy Form Inputs */
+input, select, textarea {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 12px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 16px;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-media {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .account-img {
+        margin-bottom: 15px;
+    }
+
+    .media-body {
+        margin-left: 0;
+    }
+}
+
+    </style>
+{% endblock %}

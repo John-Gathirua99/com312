@@ -1,0 +1,104 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="delete-post-container">
+    <h2 class="delete-post-heading">Are you sure you want to delete the post by '{{ object.user.username }}'?</h2>
+    
+    <form action="" method="post" class="delete-post-form">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Delete Post</legend>
+        </fieldset>
+
+        <div class="form-group">
+            <!-- Confirm Delete Button -->
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            
+            <!-- Cancel Button (Styled as a Link) -->
+            <button type="button" class="btn btn-secondary">
+                <a href="{% url 'friend_detail' object.id %}" class="cancel-link">Cancel</a>
+            </button>
+        </div>
+    </form>
+</div>
+<style>
+    /* Styling for the Delete Post Confirmation Page */
+.delete-post-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.delete-post-heading {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.delete-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Buttons Styling */
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-link {
+    color: white;
+    text-decoration: none;
+}
+
+.cancel-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .delete-post-container {
+        padding: 15px;
+    }
+
+    .delete-post-heading {
+        font-size: 20px;
+    }
+
+    .btn-danger,
+    .btn-secondary {
+        width: 100%;
+    }
+}
+
+</style>
+{% endblock %}

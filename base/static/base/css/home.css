@@ -1,0 +1,160 @@
+
+    /* General Page Title */
+    .page-title {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #333;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+.welcome-msg{
+    font-style: italic;
+    font-family: monospace;
+    font-weight: bold;
+    color: rgb(189, 172, 189);
+}
+    /* Intro text styling */
+    .intro-text {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 40px;
+    }
+
+    /* Background for the body */
+    body {
+        /* background: #e0f7fa; Cyan Background */
+        font-family: 'Arial', sans-serif;
+        background-image: url('{% static "images/happy.jpg" %}'); 
+        padding: 20px;
+    }
+
+    /* Friend Cards Layout */
+    .container {
+        margin-top: 30px;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .col-md-4 {
+        width: 100%;
+        padding: 15px;
+    }
+
+    /* Custom Styling for each friend card */
+    .custom-card {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(76, 15, 146, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        margin-bottom: 40px;
+       
+        border: none;
+        position: relative;
+    }
+
+    /* Hover effect to make the card protrude */
+    .custom-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Card body styling */
+    .card-body {
+        padding: 50px;
+        margin-bottom: 40px;
+        background-color: #f9f9f9;
+        color: #444;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Change the background color of card on hover */
+    .custom-card:hover .card-body {
+        background-color: #f1f1f1;
+    }
+
+    /* Title styling */
+    .card-title h3 {
+        font-size: 1.6rem;
+        margin: 0;
+        font-weight: bold;
+        color: #0066cc;
+        transition: color 0.3s ease;
+    }
+
+    /* Hover effect on card title */
+    .card-title h3:hover {
+        color: #0057a8;
+    }
+
+    /* Subtitle and text styling */
+    .card-subtitle {
+        font-size: 1.1rem;
+        color: #777;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 8px;
+    }
+
+    .card-text strong {
+        color: #333;
+    }
+
+    /* Links in Card */
+    .card-links {
+        margin-top: 15px;
+    }
+
+    .card-links a {
+        font-weight: 600;
+        color: #007bff;
+        text-decoration: none;
+        margin-right: 10px;
+        transition: color 0.3s ease;
+    }
+
+    .card-links a:hover {
+        text-decoration: underline;
+        color: #0057a8;
+    }
+
+    /* Styling for the authenticated user message */
+    .welcome-msg {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #28a745;
+        margin-top: 30px;
+    }
+
+    /* Link Styling for login and register */
+    .btn-link {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .btn-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsive Design - Mobile Adjustments */
+    @media (max-width: 768px) {
+        .custom-card {
+            width: 100%;
+        }
+
+        .card-title h3 {
+            font-size: 1.4rem;
+        }
+    }

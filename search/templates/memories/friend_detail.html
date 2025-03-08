@@ -1,0 +1,174 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<style>
+  /* Basic body styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fc;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container styling */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Card styling */
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 30px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.card-subtitle {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 15px;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #34495e;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.card-text strong {
+  font-weight: bold;
+}
+
+/* Header and Footer sections */
+h4 {
+  font-size: 1.25rem;
+  color: #2980b9;
+  margin-bottom: 15px;
+}
+
+/* Social media icons */
+.social-media .social-icon {
+  font-size: 1.5rem;
+  color: #7f8c8d;
+  text-decoration: none;
+  margin-right: 15px;
+  transition: color 0.3s ease;
+}
+
+.social-media .social-icon:hover {
+  color: #2980b9;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-secondary {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #7f8c8d;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .social-media .social-icon {
+    font-size: 1.25rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+  }
+}
+
+</style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <div class="container my-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-body">
+            <h5 class="card-title text-center">{{ object.user }}</h5>
+            <h5 class="card-title text-center">Name: {{ object.full_name }}</h5>
+            <h5 class="card-title text-center">Age: {{ object.age }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted text-center">Primary School: {{ object.school }}</h6>
+            <p class="card-text"><strong>Secondary School:</strong> {{ object.secondary_school }}</p>
+            <p class="card-text"><strong>College/University:</strong> {{ object.University_or_college }}</p>
+            <p class="card-text"><strong>Country of Origin:</strong> {{ object.country }}</p>
+            <p class="card-text"><strong>HomeTown:</strong> {{ object.hometown }}</p>
+
+            <div class="contacts mt-4">
+                <h4>Reach me through:</h4>
+                <p><strong>Cellphone number:</strong> 0714569555</p>
+                <strong>Email: {{ object.user.email }}</strong>
+            </div>
+
+            <div class="social_media mt-4">
+                <h4>Follow me on:</h4>
+                <div class="d-flex justify-content-start">
+                    <a href="https://twitter.com/login?" target="_blank" class="social-icon me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="social-icon me-3"><i class="fab fa-youtube"></i></a>
+                    <a href="https://tiktok.com" target="_blank" class="social-icon me-3"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://facebook.com" target="_blank" class="social-icon me-3"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <a href="{% url 'home' %}" class="btn btn-secondary btn-lg">Back to Homepage</a>
+
+                {% if object.user == user %}
+                    <a href="{% url 'memory_delete' object.id %}" class="btn btn-danger btn-sm mt-1 mb-1">Delete Post!</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <h2 class="article-title text-center mt-4">{{ object.title }}</h2>
+        <p class="article-content mt-2 text-center">{{ object.content }}</p>
+    </div>
+</div>
+{% endblock %}
+
+

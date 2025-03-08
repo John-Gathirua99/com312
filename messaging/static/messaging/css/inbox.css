@@ -1,0 +1,158 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.inbox-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+}
+
+h2 {
+    text-align: center;
+    color: #db1818;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.new-conversation {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.message-list {
+    margin-top: 30px;
+    list-style: none;
+    padding: 0;
+}
+
+.message-item {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sent-message {
+    align-self: flex-end;
+}
+
+.received-message {
+    align-self: flex-start;
+}
+
+.message-bubble {
+    max-width: 75%;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    background-color: #f1f0f0;
+    position: relative;
+    font-size: 16px;
+    color: #333;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sent-message .message-bubble {
+    background-color: #dcf8c6;
+}
+
+.received-message .message-bubble {
+    background-color: #ffffff;
+    border: 1px solid #ece5dd;
+}
+
+.message-bubble:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.message-header {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.message-body {
+    font-size: 16px;
+    color: #333;
+}
+
+.message-time {
+    font-size: 12px;
+    color: #bbb;
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+.message-footer {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.reply-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.reply-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.reply-btn:hover {
+    background-color: #0056b3;
+}
+
+.message-item a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.message-item a:hover {
+    text-decoration: underline;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+    margin-top: 50px;
+}

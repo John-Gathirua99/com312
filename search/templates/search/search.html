@@ -1,0 +1,153 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="search-container">
+        <h1 class="page-title">Search for Childhood Friends</h1>
+        
+        <!-- Search Form -->
+        <form method="get" class="search-form">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="search-button">Search</button>
+        </form>
+        
+        {% if friends %}
+            <div class="friends-container">
+                {% for friend in friends %}
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <a class="card-title" href="{% url 'friend_detail' friend.id %}">
+                                <h3>{{ friend.user }}</h3>
+                            </a>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ friend.school }}</h6>
+                            <p><strong>Year:</strong> {{ friend.year }}</p>
+                            <p class="card-text"><strong>Interests:</strong> {{ friend.interests }}</p>
+                            <p class="card-text"><strong>Primary School:</strong> {{ friend.primary_school }}</p>
+                            <p class="card-text"><strong>Secondary School:</strong> {{ friend.secondary_school }}</p>
+                            <p class="card-text"><strong>Country:</strong> {{ friend.country }}</p>
+                            {% if friend.college %}
+                                <p class="card-text"><strong>College:</strong> {{ friend.college }}</p>
+                            {% else %}
+                                <p class="card-text"><strong>University/college:</strong> {{ friend.University_or_college }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No friends found matching your criteria.</p>
+        {% endif %}
+    </div>
+    <style>
+        /* General Search Page Styles */
+    .search-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .page-title {
+        text-align: center;
+        font-size: 32px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    
+    .search-form {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    
+    .form-group input, .form-group select {
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        margin-right: 10px;
+        width: 250px;
+    }
+    
+    .search-button {
+        padding: 12px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .search-button:hover {
+        background-color: #45a049;
+    }
+    
+    /* Friends List Styles */
+    .friends-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    
+    .custom-card {
+        width: 280px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+    
+    .custom-card:hover {
+        transform: translateY(-10px);
+    }
+    
+    .card-body {
+        padding: 20px;
+    }
+    
+    .card-title {
+        font-size: 24px;
+        color: #333;
+        text-decoration: none;
+    }
+    
+    .card-title:hover {
+        color: #007bff;
+    }
+    
+    .card-subtitle {
+        font-size: 14px;
+        color: #777;
+        margin: 5px 0;
+    }
+    
+    .card-text {
+        font-size: 14px;
+        color: #555;
+        margin: 5px 0;
+    }
+    
+    .card-text strong {
+        color: #333;
+    }
+    
+    p {
+        font-size: 16px;
+        color: #333;
+        text-align: center;
+        font-weight: 500;
+    }
+    
+    </style>
+    
+{% endblock %}
+
+

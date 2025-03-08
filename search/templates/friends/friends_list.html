@@ -1,0 +1,126 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h3 class="friends-header">Your Friends</h3>
+
+<div class="friends-list">
+    {% for friendship in friends %}
+        <div class="friend-item">
+            <a href="{% url 'friend_detail' friendship.friend.id %}" class="friend-link">
+                <!-- Use img tag for friend avatar -->
+                <img src="{{ friendship.friend.profile.image.url }}" class="friend-avatar" alt="Friend's Profile Picture">
+                <p class="friend-username">{{ friendship.friend.username }}</p>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+<style>
+/* Centering and Styling the Friends List Section */
+/* Centering and Styling the Friends List Section */
+.friends-list-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh; /* Take full viewport height */
+    background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Use the same gradient from the navbar */
+    padding: 20px 0;
+}
+
+.friends-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Light transparent background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+    max-width: 80%;
+}
+
+.friend-item {
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease, background-color 0.3s ease;
+    width: 150px; /* Fixed size for each friend item */
+    opacity: 0.9;
+}
+
+/* Hover Effect - Animate the Friend Item */
+.friend-item:hover {
+    transform: scale(1.05); /* Slight enlargement on hover */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Increased shadow for emphasis */
+    background-color: #f9f9f9; /* Lighter background on hover */
+    opacity: 1;
+}
+
+/* Adding a subtle animation to the items when the page loads */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.friend-item {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.friend-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+/* Avatar Styling */
+.friend-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease; /* Avatar animation effect */
+}
+
+/* Avatar Hover Effect */
+.friend-item:hover .friend-avatar {
+    transform: scale(1.1); /* Slightly enlarge avatar on hover */
+}
+
+/* Username Styling */
+.friend-username {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+
+/* Hover Effect for Username */
+.friend-item:hover .friend-username {
+    color: #ff7e5f; /* Change color of username on hover */
+}
+
+/* Header Styling */
+.friends-header {
+    text-align: center;
+    font-size: 2rem;
+    color: #ff7e5f;
+    margin-bottom: 40px;
+    font-weight: bold;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+</style>
+{% endblock %}
+

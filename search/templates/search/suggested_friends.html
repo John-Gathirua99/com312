@@ -1,0 +1,99 @@
+{%extends 'base/base.html'%}
+{%block content%}
+<style>
+    /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.friend-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.friend-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.friend-card h3 {
+    font-size: 1.5rem;
+    color: #2980b9;
+}
+
+.friend-card p {
+    font-size: 1rem;
+    color: #34495e;
+}
+
+.friend-card a {
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #2980b9;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.friend-card a:hover {
+    background-color: #1d6f8b;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #95a5a6;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #7f8c8d;
+}
+
+</style>
+    <div class="container">
+        <h2>Suggested Friends</h2>
+
+        {% if suggested_friends %}
+            <div class="friend-list">
+                {% for friend in suggested_friends %}
+                    <div class="friend-card">
+                        <h3>{{ friend.full_name }}</h3>
+                        <p><strong>Hometown:</strong> {{ friend.hometown }}</p>
+                        <p><strong>School:</strong> {{ friend.school }}</p>
+                        <p><strong>Age:</strong> {{ friend.age }}</p>
+                        <p><strong>Interests:</strong> {{ friend.interests }}</p>
+                        <a href="{% url 'friend_detail' friend.id%}" class="btn btn-info">View Profile</a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No suggested friends based on shared hometown or school.</p>
+        {% endif %}
+
+        <br>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back to Homepage</a>
+    </div>
+{%endblock%}

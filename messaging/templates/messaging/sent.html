@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Sent Friend Requests</h2>
+        
+        {% if sent_requests %}
+            <ul class="list-group">
+                {% for request in sent_requests %}
+                    <li class="list-group-item">
+                        <p>You have sent a friend request to {{ request.receiver.username }}.</p>
+                        
+                        {% if request.is_accepted %}
+                            <span class="badge bg-success">Accepted</span>
+                        {% elif request.is_declined %}
+                            <span class="badge bg-danger">Declined</span>
+                        {% else %}
+                            <span class="badge bg-warning">Pending</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No sent requests at the moment.</p>
+        {% endif %}
+    </div>
+{% endblock %}

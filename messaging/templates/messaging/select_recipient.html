@@ -1,0 +1,91 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="select-recipient-container">
+        <h2>Select a Recipient for Your New Conversation</h2>
+
+        <!-- Users list -->
+        <div class="user-list">
+            <h3>Chat with:</h3>
+            <ul>
+                {% for user in users %}
+                    <li class="user-item">
+                        <a href="{% url 'send_message' receiver_id=user.id %}" class="user-link">{{ user.username }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Back link -->
+        <p class="back-link">
+            <a href="{% url 'inbox' %}">Back to Inbox</a>
+        </p>
+    </div>
+    <style>
+        /* General Styles for Select Recipient Page */
+.select-recipient-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.user-list {
+    margin-top: 30px;
+}
+
+h3 {
+    font-size: 22px;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-item {
+    margin-bottom: 15px;
+}
+
+.user-link {
+    font-size: 18px;
+    color: #007BFF;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.user-link:hover {
+    background-color: #f1f1f1;
+    color: #0056b3;
+}
+
+.back-link {
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+.back-link a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+    </style>
+{% endblock %}

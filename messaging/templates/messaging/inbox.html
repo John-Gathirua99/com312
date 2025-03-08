@@ -1,0 +1,234 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<!-- <link rel="stylesheet" href="{% static 'messaging/css/inbox.css' %}"> -->
+
+<div class="inbox-container">
+    <h2>Your Inbox</h2>
+
+    <!-- Button to start a new conversation -->
+    <div class="new-conversation">
+        <button class="btn">
+            <a href="{% url 'select_recipient' %}" style="color: rgb(209, 50, 50); text-decoration: none;">Start a New Conversation</a>
+        </button>
+    </div>
+  
+    {% if messages %}
+        <div class="message-list">
+            <ul>
+                {% for message in messages %}
+                    <li class="message-item {% if message.sender == request.user %}sent-message{% else %}received-message{% endif %}">
+                        <div class="message-bubble">
+                            <div class="message-header">
+                                <strong>
+                                    {% if message.sender == request.user %}
+                                    You to {{ message.receiver.username }}
+                                    {% else %}
+                                    From: {{ message.sender.username }}
+                                    {% endif %}
+                                </strong>
+                                <span class="message-time">{{ message.timestamp|date:"F d, H:i" }}</span>
+                            </div>
+                            <div class="message-body">
+                                <p>{{ message.message_text }}</p>
+                            </div>
+                        </div>
+                        <div class="message-footer">
+                            <span class="seen-status">
+                                {% if message.seen %}
+                                    &#10004;&#10004; <!-- Double ticks for seen -->
+                                {% else %}
+                                    &#10004; <!-- Single tick for unread -->
+                                {% endif %}
+                            </span>
+                            {% if message.receiver == request.user %}
+                            <button class="reply-btn">
+                                <a href="{% url 'send_message' receiver_id=message.sender.id %}" style="color: white;">Send message</a>
+                            </button>
+                            {% elif message.sender == request.user %}
+                            <button class="reply-btn">
+                                <a href="{% url 'send_message' receiver_id=message.receiver.id %}" style="color: white;">Reply</a>
+                            </button>
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p>No messages yet.</p>
+    {% endif %}
+</div>
+
+<style>
+    /* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.inbox-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+}
+
+h2 {
+    text-align: center;
+    color: #db1818;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.new-conversation {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+/* Flexbox to reverse the order of the messages */
+.message-list {
+    margin-top: 30px;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column-reverse; /* Reverse the order of the messages */
+}
+
+.message-item {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.sent-message {
+    justify-content: flex-end;
+}
+
+.received-message {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    max-width: 70%;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #f1f0f0;
+    position: relative;
+    font-size: 16px;
+    color: #333;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sent-message .message-bubble {
+    background-color: #dcf8c6;
+}
+
+.received-message .message-bubble {
+    background-color: #ffffff;
+    border: 1px solid #ece5dd;
+}
+
+.message-bubble:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.message-header {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.message-body {
+    font-size: 16px;
+    color: #333;
+}
+
+.message-time {
+    font-size: 12px;
+    color: #bbb;
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+.message-footer {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.seen-status {
+    font-size: 18px;
+    color: #4CAF50;
+    margin-left: 10px;
+}
+
+.reply-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.reply-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.reply-btn:hover {
+    background-color: #0056b3;
+}
+
+.message-item a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.message-item a:hover {
+    text-decoration: underline;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+    margin-top: 50px;
+}
+
+</style>
+
+{% endblock %}

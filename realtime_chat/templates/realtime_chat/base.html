@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" integrity="sha384-dpuaG1suU0eT09tx5plTaGMLBsfDLzUCCUXOY2j/LSvXYuG6Bqs43ALlhIqAJVRb" crossorigin="anonymous">
+
+    <title>{%block title%}{%endblock%} DjangoChat</title>
+    <style>
+      body {
+        background-color: #f8f9fa;
+        padding-top: 20px;
+      }
+
+      .navbar {
+        margin-bottom: 20px;
+      }
+
+      .badge {
+        font-size: 1.25rem;
+        padding: 10px;
+        margin: 10px auto;
+        display: block;
+        text-align: center;
+      }
+
+      .nav-link {
+        font-size: 1.2rem;
+      }
+
+      .nav-item {
+        margin: 0 10px;
+      }
+
+      .container {
+        max-width: 960px;
+        margin-top: 30px;
+      }
+
+      footer {
+        margin-top: 50px;
+        text-align: center;
+        padding: 10px;
+        background-color: #343a40;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Heading Badge -->
+      <div class="badge text-bg-primary text-wrap" style="width: 100%;">
+        This is a Django chat application.
+      </div>
+
+      <!-- Navigation Bar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{%url 'home'%}">Chat App</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              {%if request.user.is_authenticated%}
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'signout'%}">Signout</a>
+              </li>
+              {%else%}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{%url 'login2'%}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'signup'%}">Signup</a>
+              </li>
+              {%endif%}
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true" href="#">Disabled</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+{%block content%} {%endblock%}
+
+{%block scripts%} {%endblock%}
+</body>     
+</html>

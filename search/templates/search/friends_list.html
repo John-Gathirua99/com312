@@ -1,0 +1,121 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="search-container">
+        <h2>Search for Childhood Friends</h2>
+        <form method="GET" class="search-form">
+            <input type="text" name="q" placeholder="Search by name, school, or location" value="{{ request.GET.q }}" class="search-input">
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+
+        {% if friends %}
+            <h3>Search Results</h3>
+            <ul class="friend-list">
+                {% for friend in friends %}
+                    <li class="friend-item">
+                        <p>{{ friend.user.username }} - {{ friend.school }} - {{ friend.location }}</p>
+                        <a href="{% url 'send_message' friend.user.id %}" class="message-btn">Send Message</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No friends found.</p>
+        {% endif %}
+    </div>
+    <style>
+        /* Search Page Styles */
+.search-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-container h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.search-input {
+    width: 70%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.search-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #45a049;
+}
+
+.friend-list {
+    list-style: none;
+    padding: 0;
+}
+
+.friend-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.friend-item:hover {
+    background-color: #e6f7ff;
+}
+
+.friend-item p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.message-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.message-btn:hover {
+    background-color: #0056b3;
+}
+
+.no-results {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+}
+
+    </style>
+{% endblock %}

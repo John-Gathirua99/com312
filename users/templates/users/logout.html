@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+
+{% block content %}
+<style>
+    /* Logout Page Styling */
+.logout-container {
+    height: 100vh; /* Take full screen height */
+    display: flex; /* Enable flexbox */
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    background: #f4f4f4; /* Light background color */
+    margin: 0;
+}
+
+.logout-box {
+    background-color: #ffffff; /* White background */
+    padding: 30px; /* Space inside the box */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    text-align: center; /* Center text inside */
+    width: 100%; /* Allow responsive width */
+    max-width: 400px; /* Maximum width for large screens */
+}
+
+.logout-box h2 {
+    color: #333; /* Dark color for heading */
+    font-size: 24px; /* Larger font for the heading */
+    margin-bottom: 15px; /* Space under the heading */
+}
+
+.logout-box p {
+    font-size: 18px; /* Size of the confirmation text */
+    color: #666; /* Slightly lighter text */
+    margin-bottom: 20px; /* Space under the paragraph */
+}
+
+.login-again-btn {
+    background-color: #4CAF50; /* Green background for the button */
+    color: white; /* White text */
+    padding: 12px 24px; /* Space inside the button */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners for button */
+    font-size: 16px; /* Text size */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+.login-again-btn a {
+    color: white; /* Link color */
+    text-decoration: none; /* Remove underline from the link */
+}
+
+.login-again-btn:hover {
+    background-color: #45a049; /* Darken green when hovering */
+}
+
+</style>
+  <div class="logout-container">
+    <div class="logout-box">
+      <h2>Logout Confirmation</h2>
+      <p>Are you sure you want to log out?</p>
+      
+      <button class="login-again-btn">
+        <a href="{% url 'login' %}">Log in again</a>
+      </button>
+    </div>
+  </div>
+{% endblock %}
+

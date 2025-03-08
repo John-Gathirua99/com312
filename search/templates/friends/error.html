@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="error-page">
+        <h1>Oops! Something went wrong.</h1>
+        <p>It seems like you tried to add yourself as a friend, which isn't allowed.</p>
+        <p>Go back to your <a href="{% url 'friends_list' %}">friends list</a> or <a href="{% url 'home' %}">return to the home page</a>.</p>
+    </div>
+{% endblock %}
+
+
+<style>
+    .error-page {
+        text-align: center;
+        padding: 50px;
+        font-family: Arial, sans-serif;
+    }
+
+    .error-page h1 {
+        color: red;
+        font-size: 2em;
+    }
+
+    .error-page p {
+        font-size: 1.2em;
+    }
+
+    .error-page a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    .error-page a:hover {
+        text-decoration: underline;
+    }
+</style>
